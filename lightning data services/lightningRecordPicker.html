@@ -1,1 +1,97 @@
+<template>
+    <lightning-card title="Hello World">
+        <div class="slds-p-horizontal_small">
+            <p>Sample01</p>
+        </div>
 
+    <!-- <lightning-record-form
+        object-api-name="Test_Custom_Object__c"
+        record-id={accountId}
+        layout-type="Full"
+        mode="View">
+    </lightning-record-form> -->
+
+    <!-- <lightning-record-edit-form
+        object-api-name="Test_Custom_Object__c"
+        record-id={accountId}
+        onsuccess={handleSuccess}>
+        <lightning-input-field field-name="Name"></lightning-input-field>
+        <lightning-input-field field-name="Account_MD1__c"></lightning-input-field>
+        <lightning-input-field field-name="Contact_MD__c"></lightning-input-field>
+        <lightning-button class="slds-m-top_small" type="submit" label="Save"></lightning-button>
+    </lightning-record-edit-form> -->
+
+    <!-- Spinner shown while loading -->
+        <template if:true={isLoading}>
+            <lightning-spinner
+                alternative-text="Loading"
+                size="medium">
+            </lightning-spinner>
+        </template>
+
+
+        <lightning-record-picker
+            label="Select a record"
+            placeholder="Search..."
+            object-api-name="Contact"
+            value={initialValue}
+            onchange={handleContactChange}
+            
+        ></lightning-record-picker>
+
+  
+        <lightning-record-form
+                object-api-name="Test_Custom_Object__c"
+                record-id={accountId}
+                layout-type="Full"
+                fields={fields}
+                mode="edit">
+        </lightning-record-form> 
+        
+
+
+        <h3>Lightning Record Edit Form</h3>
+
+        <lightning-record-edit-form
+            object-api-name="Test_Custom_Object__c"
+            record-id={accountId}
+            onload={handleLoad}
+            onsuccess={handleSuccess}
+            onerror={handleError}>
+
+            <div style="width: 75%;" class="slds-box" >
+                <lightning-input-field field-name="Name"></lightning-input-field>
+                 <lightning-record-picker
+                    label="Select a contact"
+                    placeholder="Search..."
+                    object-api-name="Contact"
+                    value={initialValue}
+                    onchange={handleContactChange}
+                    filter={filterConfig}
+                    >
+                </lightning-record-picker>
+                <lightning-input-field field-name="Account_MD1__c" ></lightning-input-field>
+                <lightning-input-field field-name="Contact_MD__c" value={selectedContactId} ></lightning-input-field>
+
+            </div>
+            
+            <lightning-button
+                class="slds-m-top_small"
+                type="submit"
+                label="Save"
+                disabled={isLoading}>
+            </lightning-button>
+
+        </lightning-record-edit-form>
+
+        <h3>Lightning Record View Form</h3>
+
+        <lightning-record-view-form record-id={accountId} object-api-name="Test_Custom_Object__c">
+            <lightning-output-field style="width: 75%;" class="slds-box" field-name="Name"></lightning-output-field>
+            <lightning-output-field field-name="Account_MD1__c"></lightning-output-field>
+            <lightning-output-field field-name="Contact_MD__c"></lightning-output-field>
+        </lightning-record-view-form>
+      
+
+    </lightning-card>
+</template>
