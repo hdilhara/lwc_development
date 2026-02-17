@@ -38,11 +38,17 @@
 
                 <!--****************************** Lightning record form *************************************-->
                 <lightning-record-form
+                    data-id = "recordForm"
                     object-api-name="Account"
                     record-id={initialAccValue}
                     fields={accFormFields}
-                    mode={formMode}>
+                    mode={formMode}
+                    onload={handleLoad}
+                    onsubmit={handleSubmit}
+                    onerror={handleError}
+                    onsuccess={handleSuccess}>
                 </lightning-record-form> 
+                <!-- onload, onsubmit, onerror and onsuccess are Optional attributes if need -->
                 <!--*******************************************************************************************-->
 
 
