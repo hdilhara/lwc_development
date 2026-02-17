@@ -1,0 +1,67 @@
+<template>
+    <lightning-card title="Lightning Record Edit Form - Sample">
+
+        <div style="padding: 10px;">
+            <p> <b>Note: </b>User can select an Account, then Account will load. Rating &amp; Phone will validate by the custom validation.</p>
+            <b>Custom Validations</b>
+            <ul>
+                <li>Phone should start with +94</li>
+                <li>Rating value should be "Warm"</li>
+            </ul>
+        </div>
+
+        <div style="max-width: 1000px; border: 1px solid black; margin:10px; padding:25px;border-radius: 5px;">
+
+            <lightning-record-picker
+                label="Select an Account to Display Details"
+                placeholder="Search..."
+                object-api-name="Account"
+                value={initialAccValue}
+                onchange={handleAccountChange}
+            ></lightning-record-picker>
+           
+        <template if:true={initialAccValue}>
+            <div style="padding: 10px; border: 1px solid black;">
+
+                <!--****************************** Lightning record edit form *************************************--> 
+                <lightning-record-edit-form
+                    data-id="recordEditForm"
+                    object-api-name="Account"
+                    record-id={initialAccValue}
+                    onload={handleLoad}
+                    onsubmit={handleSubmit}
+                    onerror={handleError}
+                    onsuccess={handleSuccess}>
+
+                    <lightning-input-field field-name="Name"></lightning-input-field>
+
+                    <!--Phone adding as input field to get the support for custom validations -->
+                    <lightning-input 
+                        data-field="Phone"
+                        label="Phone"
+                        name="Phone"
+                        value={phoneValue}
+                        onchange={handleChangeField}>
+                    </lightning-input>
+                    <!--Rating adding as input field to get the support for custom validations -->
+                    <lightning-select
+                        data-field="Rating"
+                        label="Rating"
+                        value={ratingValue}
+                        options={ratingPicklistValues}
+                        onchange={handleChangeField}
+                        required >
+                    </lightning-select>
+
+                    <lightning-input-field field-name="BillingAddress" data-field="BillingAddress"></lightning-input-field>
+                    <lightning-button class="slds-m-top_small" type="submit" label="Save"></lightning-button>
+                </lightning-record-edit-form>
+                <!--*******************************************************************************************-->
+
+                <!-- <lightning-input-field value={phoneValue} field-name="Phone" data-field="Phone"></lightning-input-field>  *** removed this due to validation--> 
+            </div>
+        </template>
+        </div>
+
+    </lightning-card>
+</template>
