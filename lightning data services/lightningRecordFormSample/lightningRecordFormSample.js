@@ -15,19 +15,10 @@ export default class LightningRecordFormSample extends LightningElement {
     ];
 
     handleFormModeChange(event){
-        console.log('xxx Event2',event.detail);
         this.formMode = event.detail.value;
-
     }
 
     handleAccountChange(event) {
         this.initialAccValue = event.detail.recordId;
-
-        console.log('xxx initialvalue: '+this.initialAccValue);
-        console.log('xxx log: '+JSON.stringify(event.detail));
-        if(!this.initialAccValue)//if falsy
-        {
-            // clear form value
-        }
     }
 }
