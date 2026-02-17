@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title="Lightning Record Picker - Sample">
+
+        <div style="padding: 10px;">
+            <p> <b>Note: </b>First user can select any org available Account. Then Contacts selector will available and can able 
+                to select only the Contacts under selected the Account.
+            <br>
+            If user removes Account -> again the contact picker should be desabled and clear
+            </p>
+        </div>
+
+        <div style="max-width: 1000px; border: 1px solid black; margin:10px; padding:25px;border-radius: 5px;">
+            <lightning-record-picker
+            label="Select an Account"
+            placeholder="Search..."
+            object-api-name="Account"
+            value={initialAccValue}
+            onchange={handleAccountChange}
+            ></lightning-record-picker>
+
+            <lightning-record-picker
+                data-id="contactPicker"
+                label="Select a Contact (All the contacts under selected Account)"
+                placeholder="Search..."
+                object-api-name="Contact"
+                value={initialContValue}
+                onchange={handleContactChange}
+                disabled={disableContSelect}
+                filter={filterConfigCont}
+            ></lightning-record-picker>
+        </div>
+
+        
+
+
+    </lightning-card>
+</template>
